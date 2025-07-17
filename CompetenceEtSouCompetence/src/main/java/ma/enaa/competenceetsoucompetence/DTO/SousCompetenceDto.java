@@ -5,13 +5,11 @@ import ma.enaa.competenceetsoucompetence.Models.SousCompetence;
 
 import java.io.Serializable;
 
-/**
- * DTO for {@link SousCompetence}
- */
-@Value
-public class SousCompetenceDto implements Serializable {
+
+public class SousCompetenceDto  {
     Long id;
     String nom;
     String description;
     boolean etatValidation;
+
 }
