@@ -1,19 +1,23 @@
-package ma.enaa.competenceetsoucompetence.Mapper;
+package ma.enaa.competenceetsoucompetence.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
-public class SousCompetence {
+public class Competence {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)  // Génération auto de l'ID
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false)
     private Long id;
     private String nom;
     private String description;
-    private  boolean etatValidation;
+    private boolean etatValidation;
 
-    @ManyToOne
-    @JoinColumn(name = "competence_id")
-    private Competence competence;
+    @JsonIgnore
+    @OneToMany(mappedBy = "competence")
+    private List<SousCompetence> sousCompetences;
 
     public Long getId() {
         return id;
@@ -47,11 +51,11 @@ public class SousCompetence {
         this.etatValidation = etatValidation;
     }
 
-    public Competence getCompetence() {
-        return competence;
+    public List<SousCompetence> getSousCompetences() {
+        return sousCompetences;
     }
 
-    public void setCompetence(Competence competence) {
-        this.competence = competence;
+    public void setSousCompetences(List<SousCompetence> sousCompetences) {
+        this.sousCompetences = sousCompetences;
     }
 }
